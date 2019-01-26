@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/andykdy/nwHacks2019/issues"
   },
-  "homepage": "https://github.com/andykdy/nwHacks2019#readme"
+  "homepage": "https://github.com/andykdy/nwHacks2019#readme",
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.2.4"
+  }
 }
