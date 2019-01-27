@@ -29,25 +29,22 @@ const styles = theme => ({
         padding: theme.spacing.unit * 4,
         outline: 'none',
     },
-    label: {
-        width: "100%",
-        variant: "h1",
-    },
     modal: {
         top:'50%',
         left: '50%',
         transform:'translate(-50%, -50%)',
     },
-    submit: {
-        position: "absolute",
-        right: theme.spacing.unit *5,
-    }
 });
 
 class SimpleModal extends React.Component {
-    state = {
-        open: false,
-    };
+    constructor(props){
+        super(props);
+        this.state = {
+            open: false,
+            title: "",
+            description:"",
+        }
+    }
 
     handleOpen = () => {
         this.setState({ open: true });
@@ -70,13 +67,8 @@ class SimpleModal extends React.Component {
                     onClose={this.handleClose}
                 >
                     <div style={getModalStyle()} className={classes.paper}>
-                        <Typography className={this.props.classes.label} variant={"h4"}>
-                            Create Hive
-                        </Typography>
-                        <HiveInputPrompt/>
-                        <Button onClick={this.handleClose}> Close </Button>
-                        <Button onClick={this.handleClose} color={"primary"} variant={"contained"} className={this.props.classes.submit}> Submit </Button>
-                    </div>
+                        <HiveInputPrompt handleClose={this.handleClose}/>
+                        </div>
                 </Modal>
             </div>
         );
