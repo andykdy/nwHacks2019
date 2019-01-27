@@ -7,13 +7,10 @@ import HiveInputPrompt from "./HiveInputPrompt";
 import Typography from "@material-ui/core/Typography/Typography";
 
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
 
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50;
+    const left = 50;
 
     return {
         top: `${top}%`,
@@ -36,6 +33,15 @@ const styles = theme => ({
         width: "100%",
         variant: "h1",
     },
+    modal: {
+        top:'50%',
+        left: '50%',
+        transform:'translate(-50%, -50%)',
+    },
+    submit: {
+        position: "absolute",
+        right: theme.spacing.unit *5,
+    }
 });
 
 class SimpleModal extends React.Component {
@@ -69,7 +75,7 @@ class SimpleModal extends React.Component {
                         </Typography>
                         <HiveInputPrompt/>
                         <Button onClick={this.handleClose}> Close </Button>
-                        <Button onClick={this.handleClose}> Submit </Button>
+                        <Button onClick={this.handleClose} color={"primary"} variant={"contained"} className={this.props.classes.submit}> Submit </Button>
                     </div>
                 </Modal>
             </div>
