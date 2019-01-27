@@ -18,12 +18,17 @@ const muiTheme = createMuiTheme({
     },
     typography: {
         useNextVariants: true,
-    }
+    },
+
 });
 
 const styles = (theme) => createStyles({
     root: {
         color: "#123456",
+    },
+    mainBar:{
+        width:window.innerWidth*0.7,
+        marginLeft:window.innerWidth*0.3
     }
 });
 
@@ -40,9 +45,11 @@ class App extends Component {
         return (
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
-                    <HiveModal/>
                     <SideBar username={this.state.userName}/>
-                    <GoogleMap/>
+                    <div className={this.props.classes.mainBar}>
+                        <HiveModal/>
+                        <GoogleMap/>
+                    </div>
                 </MuiThemeProvider>
             </div>
         );

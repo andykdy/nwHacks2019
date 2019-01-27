@@ -9,19 +9,20 @@ const styles = theme => ({
         position: 'absolute',
         margin: theme.spacing.unit,
         zIndex:3,
-        bottom:0,
-        left:0,
-    },
+        bottom:theme.spacing.unit*3,
+        left:window.innerWidth*0.3 + theme.spacing.unit*3,
+        showModal: true,
+    }
 });
 
 function AddHiveButton(props) {
     const { classes } = props;
+
     return (
         <div>
-            <Fab color="primary" aria-label="Add" className={classes.fab}>
+            <Fab onClick={props.triggerModal} color="primary" aria-label="Add" className={classes.fab}>
                 <AddIcon />
             </Fab>
-
         </div>
     );
 }
