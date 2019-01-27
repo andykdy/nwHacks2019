@@ -32,12 +32,13 @@ class App extends Component {
         }
     }
 
+
     render() {
         return (
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
                     <p>hello</p>
-                    <SideBar username={this.state.name} />
+                    <SideBar username={this.state.name}/>
                 </MuiThemeProvider>
             </div>
         );
