@@ -3,14 +3,15 @@ import {Guid} from "guid-typescript";
 import {ILocation} from "./interfaces";
 
 export default class Hive {
-    private key: Guid;
-    private name: string;
-    private location: ILocation;
-    private attending_users: User[];
-    private date_created: number;
-    private created_by: User;
+    private readonly key: Guid;
+    private readonly name: string;
+    private readonly location: ILocation;
+    private readonly attending_users: User[];
+    private readonly date_created: number;
+    private readonly created_by: User;
+    private readonly description: string;
 
-    constructor(key: Guid, name: string, location: ILocation, user: User){
+    constructor(key: Guid, name: string, location: ILocation, description: string, user: User){
         this.key = key;
         this.name = name;
         this.location = location;
