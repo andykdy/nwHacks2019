@@ -46,8 +46,8 @@ class App extends Component {
             badges: [],
             rank: "",
             currentLocation: {
-                lat: 0,
-                lon: 0,
+                lat: 49.28,
+                lon: -123.26,
                 radius: 0
             },
             hiveList: [],
@@ -98,14 +98,19 @@ class App extends Component {
         };
     };
 
+    getHiveList = () => {
+        return this.state.hiveList;
+    };
+
     render() {
+        console.log(this.state.hiveList);
         return (
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
                     <SideBar username={this.state.userName} points={this.state.points} badges={this.state.badges} rank={this.state.rank} />
                     <div className={window.innerWidth > 600 ? this.props.classes.mainBar : this.props.classes.mainBarMobile}>
                         <HiveModal loadHiveList={this.loadHiveList} getData={this.getData} />
-                        <GoogleMap/>
+                        <GoogleMap hiveList={this.getHiveList}/>
                     </div>
                 </MuiThemeProvider>
             </div>

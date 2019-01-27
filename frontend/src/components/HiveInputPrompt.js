@@ -58,7 +58,7 @@ class HiveInputPrompt extends Component {
         request.open("POST", url, true);
 
         request.onload = () => {
-            let response = request.responseText;
+            let response = JSON.parse(request.responseText);
             if (request.status === 200 || request.status === 201) {
                 this.props.loadHiveList(response);
             } else {
