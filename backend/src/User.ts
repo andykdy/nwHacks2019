@@ -8,7 +8,7 @@ export default class User{
         this.userID = userID;
         this.points = 0;
         this.badges = [];
-        this.rank = "loser";
+        this.rank = "larvae";
     }
 
     public get_user_ID(): string{
@@ -26,7 +26,6 @@ export default class User{
     public get_rank(): string{
         return this.rank;
     }
-
 
     public add_points(value: number): void{
         this.points += value;

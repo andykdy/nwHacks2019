@@ -4,6 +4,8 @@ import createStyles from "@material-ui/core/styles/createStyles";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import withStyles from "@material-ui/core/styles/withStyles";
 import SideBar from "./components/SideBar";
+import GoogleMap from "./components/GoogleMap";
+import AddUserButton from "./components/AddUserButton";
 
 const muiTheme = createMuiTheme({
     palette: {
@@ -20,7 +22,9 @@ const muiTheme = createMuiTheme({
 });
 
 const styles = (theme) => createStyles({
-
+    root: {
+        color: "#123456",
+    }
 });
 
 class App extends Component {
@@ -37,8 +41,9 @@ class App extends Component {
         return (
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
-                    <p>hello</p>
-                    <SideBar username={this.state.name}/>
+                    <AddUserButton/>
+                    <SideBar username={this.state.userName}/>
+                    <GoogleMap/>
                 </MuiThemeProvider>
             </div>
         );

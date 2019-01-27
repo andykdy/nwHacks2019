@@ -24,8 +24,8 @@ class userManager{
         return null;
     }
 
-    public delete_user(userID:string): boolean{
-        if (this.user_list.has(userID)){
+    public delete_user(userID:string): boolean {
+        if (this.user_list.has(userID)) {
             this.user_list.delete(userID)
             return true;
         }
