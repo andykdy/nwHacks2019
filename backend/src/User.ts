@@ -8,7 +8,7 @@ export default class User{
         this.userID = userID;
         this.points = 0;
         this.badges = [];
-        this.rank = "loser";
+        this.rank = "larvae";
     }
 
     public get_user_ID(): string{

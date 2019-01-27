@@ -2,6 +2,7 @@ import User from "../src/User";
 
 class userManager{
     private user_list: Map<string, User>;
+
     constructor(){
         this.user_list = new Map<string, User>([]);
     }
