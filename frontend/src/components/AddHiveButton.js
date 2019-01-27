@@ -14,7 +14,7 @@ const styles = theme => ({
     },
 });
 
-function AddUserButton(props) {
+function AddHiveButton(props) {
     const { classes } = props;
     return (
         <div>
@@ -26,8 +26,8 @@ function AddUserButton(props) {
     );
 }
 
-AddUserButton.propTypes = {
+AddHiveButton.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AddUserButton);
+export default withStyles(styles)(AddHiveButton);

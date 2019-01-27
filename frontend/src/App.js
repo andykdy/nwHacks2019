@@ -5,7 +5,7 @@ import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import withStyles from "@material-ui/core/styles/withStyles";
 import SideBar from "./components/SideBar";
 import GoogleMap from "./components/GoogleMap";
-import AddUserButton from "./components/AddUserButton";
+import AddHiveButton from "./components/AddHiveButton";
 
 const muiTheme = createMuiTheme({
     palette: {
@@ -41,7 +41,7 @@ class App extends Component {
         return (
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
-                    <AddUserButton/>
+                    <AddHiveButton/>
                     <SideBar username={this.state.userName}/>
                     <GoogleMap/>
                 </MuiThemeProvider>
