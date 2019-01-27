@@ -1,4 +1,4 @@
-export default class user{
+export default class User{
     private userID: string;
     private points: number;
     private badges: string[];
@@ -17,6 +17,10 @@ export default class user{
 
     public get_points(): number{
         return this.points;
+    }
+
+    public add_points(value: number): void{
+        this.points += value;
     }
 
 }
