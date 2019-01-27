@@ -26,9 +26,13 @@ const styles = (theme) => createStyles({
     root: {
         color: "#123456",
     },
-    mainBar:{
-        width:window.innerWidth*0.7,
-        marginLeft:window.innerWidth*0.3
+    mainBar: {
+        width: window.innerWidth * 0.7,
+        marginLeft: window.innerWidth * 0.3
+    },
+    mainBarMobile: {
+        width: "100%",
+        marginLeft: 0
     }
 });
 
@@ -46,7 +50,7 @@ class App extends Component {
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
                     <SideBar username={this.state.userName}/>
-                    <div className={this.props.classes.mainBar}>
+                    <div className={window.innerWidth > 600 ? this.props.classes.mainBar : this.props.classes.mainBarMobile}>
                         <HiveModal/>
                         <GoogleMap/>
                     </div>
