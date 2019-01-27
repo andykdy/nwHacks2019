@@ -64,11 +64,11 @@ class App extends Component {
 
         request.open("GET", url, true);
 
-        request.onload = function() {
+        request.onload = () => {
             let response = JSON.parse(request.responseText);
             if (request.status === 200) {
                 this.setState({
-                    username: response["userID"],
+                    username: response.userID,
                     points: response.points,
                     badges: response.badges,
                     rank: response.rank,
@@ -103,7 +103,6 @@ class App extends Component {
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
                     <SideBar username={this.state.userName} points={this.state.points} badges={this.state.badges} rank={this.state.rank} />
-                    <div style={{marginLeft: "50%"}}>{JSON.stringify(this.state.hiveList)}</div>
                     <div className={window.innerWidth > 600 ? this.props.classes.mainBar : this.props.classes.mainBarMobile}>
                         <HiveModal loadHiveList={this.loadHiveList} getData={this.getData} />
                         <GoogleMap/>

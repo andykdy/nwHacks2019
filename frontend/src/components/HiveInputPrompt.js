@@ -48,7 +48,7 @@ class HiveInputPrompt extends Component {
         let data = this.props.getData();
         console.log(this.state.title);
         console.log(this.state.description);
-        this.addHive(this.state.title, this.state.description, "andy", data.location);
+        this.addHive(this.state.title, this.state.description, data.username, data.location);
     };
 
     addHive = (title, description, username, location) => {
