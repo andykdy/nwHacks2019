@@ -5,12 +5,12 @@ import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import withStyles from "@material-ui/core/styles/withStyles";
 import SideBar from "./components/SideBar";
 import GoogleMap from "./components/GoogleMap";
-import AddHiveButton from "./components/AddHiveButton";
+import HiveModal from "./components/HiveModal"
 
 const muiTheme = createMuiTheme({
     palette: {
         primary: {
-            main: "#3490FF"
+            main: "#3490ff"
         },
         secondary: {
             main: "#FF005E",
@@ -36,12 +36,11 @@ class App extends Component {
         }
     }
 
-
     render() {
         return (
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
-                    <AddHiveButton/>
+                    <HiveModal/>
                     <SideBar username={this.state.userName}/>
                     <GoogleMap/>
                 </MuiThemeProvider>
