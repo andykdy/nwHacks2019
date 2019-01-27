@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography/Typography";
 import Button from "@material-ui/core/Button/Button";
-import { addHive }from "../controller/rest"
 
 const styles = theme => ({
     container: {
@@ -34,7 +33,7 @@ class HiveInputPrompt extends Component {
         super(props);
         this.state = {
             title: "",
-            description:"",
+            description: "",
         }
     }
 
@@ -46,8 +45,43 @@ class HiveInputPrompt extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        addHive("fashion", "this hive is for fashion", "AndyKim", {lat: 49.26, lon: -123.25, radius:0.001});
-        console.log("we made it here");
+        let data = this.props.getData();
+        console.log(this.state.title);
+        console.log(this.state.description);
+        this.addHive(this.state.title, this.state.description, "andy", data.location);
+    };
+
+    addHive = (title, description, username, location) => {
+        let request = new XMLHttpRequest();
+        let url = "http://localhost:8080/hive";
+
+        request.open("POST", url, true);
+
+        request.onload = () => {
+            let response = request.responseText;
+            if (request.status === 200 || request.status === 201) {
+                this.props.loadHiveList(response);
+            } else {
+                console.error(response);
+            }
+        };
+
+        request.onerror = function() {
+            console.error(request.responseText);
+        };
+
+        request.setRequestHeader("Content-Type", "application/json");
+
+        const data = {
+            title: title,
+            description: description,
+            username: username,
+            location: location
+        };
+
+        console.log(data);
+
+        request.send(JSON.stringify(data));
     };
 
     render() {
@@ -65,11 +99,12 @@ class HiveInputPrompt extends Component {
                         type="text"
                         margin="normal"
                         variant="outlined"
+                        onChange={this.handleChange("title")}
                     />
                     <TextField
                         id="outlined-description-input"
                         label="Hive Description"
-                        onChange={this.handleChange('multiline')}
+                        onChange={this.handleChange("description")}
                         className={classes.textField}
                         margin="normal"
                         variant="outlined"

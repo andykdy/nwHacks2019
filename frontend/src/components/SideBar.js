@@ -44,12 +44,12 @@ const styles = (theme) => createStyles({
         marginBottom: theme.spacing.unit * 2
     },
     info: {
-        marginLeft: theme.spacing.unit * 8,
-        marginRight: theme.spacing.unit * 8
+        marginLeft: theme.spacing.unit * 3,
+        marginRight: theme.spacing.unit * 3
     },
     infoMobile: {
-        marginLeft: theme.spacing.unit * 4,
-        marginRight: theme.spacing.unit * 4
+        marginLeft: theme.spacing.unit * 3,
+        marginRight: theme.spacing.unit * 3
     },
     userInfo: {
         width: "85%",
@@ -115,18 +115,7 @@ class SideBar extends Component {
                         justify="center"
                         spacing={16}
                     >
-                        {[  "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png",
-                            "http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png"].map((value, index) => (
+                        {this.props.badges.map((value, index) => (
                             <Grid key={index} item>
                                 <img className={this.props.classes.badgeIcons} src={value}/>
                             </Grid>
@@ -138,27 +127,27 @@ class SideBar extends Component {
 
         const userInfo = (
             <div className={window.innerWidth > 600 ? this.props.classes.userInfo : this.props.classes.userInfoMobile}>
-                <div className={this.props.classes.pic}>
+                <div>
                     <Avatar alt="Avatar" className={this.props.classes.avatar}>A</Avatar>
                 </div>
                 <List className={window.innerWidth > 600 ? this.props.classes.info : this.props.classes.infoMobile}>
                     <ListItem>
                         <Avatar alt={"User"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/user.png"} />
-                        <ListItemText primary="MyUserName12183" />
+                        <ListItemText primary={this.props.username} />
                     </ListItem>
                     <li>
                         <Divider />
                     </li>
                     <ListItem>
                         <Avatar alt={"Points"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/points.png"} />
-                        <ListItemText primary="176" />
+                        <ListItemText primary={this.props.points} />
                     </ListItem>
                     <li>
                         <Divider />
                     </li>
                     <ListItem>
                         <Avatar alt={"Rank"} src="https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/rank.png" />
-                        <ListItemText primary="Queen Bee" />
+                        <ListItemText primary={this.props.rank} />
                     </ListItem>
                 </List>
             </div>

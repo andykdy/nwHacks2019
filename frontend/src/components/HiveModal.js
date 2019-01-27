@@ -6,8 +6,6 @@ import Button from '@material-ui/core/Button';
 import HiveInputPrompt from "./HiveInputPrompt";
 import Typography from "@material-ui/core/Typography/Typography";
 
-
-
 function getModalStyle() {
     const top = 50;
     const left = 50;
@@ -54,6 +52,7 @@ class SimpleModal extends React.Component {
         this.setState({ open: false });
     };
 
+
     render() {
         const { classes } = this.props;
 
@@ -67,8 +66,8 @@ class SimpleModal extends React.Component {
                     onClose={this.handleClose}
                 >
                     <div style={getModalStyle()} className={classes.paper}>
-                        <HiveInputPrompt handleClose={this.handleClose}/>
-                        </div>
+                        <HiveInputPrompt loadHiveList={this.props.loadHiveList} getData={this.props.getData} handleClose={this.handleClose}/>
+                    </div>
                 </Modal>
             </div>
         );

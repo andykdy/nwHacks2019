@@ -42,16 +42,70 @@ class App extends Component {
 
         this.state = {
             userName: "Andy",
+            points: 0,
+            badges: [],
+            rank: "",
+            currentLocation: {
+                lat: 0,
+                lon: 0,
+                radius: 0
+            },
+            hiveList: [],
         }
     }
+
+    componentDidMount() {
+        this.getProfile(this.state.userName);
+    }
+
+    getProfile = (username) => {
+        let request = new XMLHttpRequest();
+        let url = "http://localhost:8080/user/" + username;
+
+        request.open("GET", url, true);
+
+        request.onload = function() {
+            let response = JSON.parse(request.responseText);
+            if (request.status === 200) {
+                this.setState({
+                    username: response["userID"],
+                    points: response.points,
+                    badges: response.badges,
+                    rank: response.rank,
+                })
+            } else {
+                console.error(response.error);
+            }
+        };
+
+        request.onerror = function() {
+            let response = JSON.parse(request.responseText);
+            console.error(response.error);
+        };
+
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send();
+    };
+
+    loadHiveList = (hiveList) => {
+        this.setState({hiveList: hiveList});
+    };
+
+    getData = () => {
+        return {
+            username: this.state.username,
+            location: this.state.currentLocation
+        };
+    };
 
     render() {
         return (
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
-                    <SideBar username={this.state.userName}/>
+                    <SideBar username={this.state.userName} points={this.state.points} badges={this.state.badges} rank={this.state.rank} />
+                    <div style={{marginLeft: "50%"}}>{JSON.stringify(this.state.hiveList)}</div>
                     <div className={window.innerWidth > 600 ? this.props.classes.mainBar : this.props.classes.mainBarMobile}>
-                        <HiveModal/>
+                        <HiveModal loadHiveList={this.loadHiveList} getData={this.getData} />
                         <GoogleMap/>
                     </div>
                 </MuiThemeProvider>
