@@ -27,7 +27,7 @@ const styles = (theme) => createStyles({
     inside: {
         width: "100%",
         height: window.innerHeight,
-        backgroundColor: "#4b6584"
+        backgroundColor: "#ecf0f1"
     },
     header: {
         margin: "auto",
@@ -95,7 +95,7 @@ class SideBar extends Component {
         const navBar = (
             <AppBar position="static" className={this.props.classes.header} color="primary">
                 <Toolbar>
-                    <Avatar className={this.props.classes.logo}>B</Avatar>
+                    <Avatar alt={"Logo"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/logo.png"} className={this.props.classes.logo}>B</Avatar>
                     <Typography variant="h6">
                         The Big Buzz
                     </Typography>
@@ -143,21 +143,21 @@ class SideBar extends Component {
                 </div>
                 <List className={window.innerWidth > 600 ? this.props.classes.info : this.props.classes.infoMobile}>
                     <ListItem>
-                        <Avatar alt={"User"}>U</Avatar>
+                        <Avatar alt={"User"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/user.png"} />
                         <ListItemText primary="MyUserName12183" />
                     </ListItem>
                     <li>
                         <Divider />
                     </li>
                     <ListItem>
-                        <Avatar src="https://t6.rbxcdn.com/b48f72a529e65f3b50c6a1a6f2711be1"/>
+                        <Avatar alt={"Points"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/points.png"} />
                         <ListItemText primary="176" />
                     </ListItem>
                     <li>
                         <Divider />
                     </li>
                     <ListItem>
-                        <Avatar src="http://www.myiconfinder.com/uploads/iconsets/c9dc8a51f251cff1546e099b1dc4e91a-trophy.png"/>
+                        <Avatar alt={"Rank"} src="https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/rank.png" />
                         <ListItemText primary="Queen Bee" />
                     </ListItem>
                 </List>
