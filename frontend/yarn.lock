@@ -797,6 +797,7 @@
 "@material-ui/core@latest":
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-3.9.1.tgz#994fa54f0936092556d231d1055b8f76b12be06e"
+  integrity sha512-26GtjuwxPPfSsUnYrTOC8zuCuhWPVhc4SsUSFTZq0n1QvpGi9UEZRFe8yp6FykQE+PmqyyY+eWdrfiXKSUKZ0w==
   dependencies:
     "@babel/runtime" "^7.2.0"
     "@material-ui/system" "^3.0.0-alpha.0"
@@ -3178,6 +3179,10 @@ etag@~1.8.1:
 eventemitter3@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
+<<<<<<< Updated upstream
+=======
+  integrity sha1-HIaZHYFq0eUEdQ5zh0Ik7PO+xQg=
+>>>>>>> Stashed changes
 
 eventemitter3@^3.0.0:
   version "3.1.0"
@@ -3870,6 +3875,10 @@ globby@^6.1.0:
 google-map-react@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/google-map-react/-/google-map-react-1.1.2.tgz#9ec9cbee88bf043dd24ce6c5953663e636461a71"
+<<<<<<< Updated upstream
+=======
+  integrity sha512-uHyhLW0db1nXMWYfazTnm6GiMzITUZ+OldFt+u0lLsC/ndSNVZWY0Hn2v8s2+vnpg88ZU0cAk7nRK5UXq0ahaA==
+>>>>>>> Stashed changes
   dependencies:
     "@mapbox/point-geometry" "^0.1.0"
     eventemitter3 "^1.1.0"
@@ -7793,6 +7802,10 @@ schema-utils@^1.0.0:
 scriptjs@^2.5.7:
   version "2.5.9"
   resolved "https://registry.yarnpkg.com/scriptjs/-/scriptjs-2.5.9.tgz#343915cd2ec2ed9bfdde2b9875cd28f59394b35f"
+<<<<<<< Updated upstream
+=======
+  integrity sha512-qGVDoreyYiP1pkQnbnFAUIS5AjenNwwQBdl7zeos9etl+hYKWahjRTfzAZZYBv5xNHx7vNKCmaLDQZ6Fr2AEXg==
+>>>>>>> Stashed changes
 
 select-hose@^2.0.0:
   version "2.0.0"
