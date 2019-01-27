@@ -19,6 +19,15 @@ export default class User{
         return this.points;
     }
 
+    public get_badges(): string[]{
+        return this.badges;
+    }
+
+    public get_rank(): string{
+        return this.rank;
+    }
+
+
     public add_points(value: number): void{
         this.points += value;
     }
