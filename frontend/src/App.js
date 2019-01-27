@@ -1,28 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import createStyles from "@material-ui/core/styles/createStyles";
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import withStyles from "@material-ui/core/styles/withStyles";
+import SideBar from "./components/SideBar";
+
+const muiTheme = createMuiTheme({
+    palette: {
+        primary: {
+            main: "#3490FF"
+        },
+        secondary: {
+            main: "#FF005E",
+        },
+    },
+    typography: {
+        useNextVariants: true,
+    }
+});
+
+const styles = (theme) => createStyles({
+
+});
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            userName: "Andy",
+        }
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <MuiThemeProvider theme={muiTheme}>
+                    <p>hello</p>
+                    <SideBar username={this.state.name} />
+                </MuiThemeProvider>
+            </div>
+        );
+    }
 }
 
-export default App;
+export default withStyles(styles)(App);
