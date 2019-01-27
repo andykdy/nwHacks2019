@@ -235,8 +235,8 @@ app.get("/hive/:key", (req, res) => {
  *              location: <location of event as ILocation>
  *          }
  *      responses:
- *          200:
- *              body: {<User object>}
+ *          201:
+ *              body: {[<hive object array>]}
  *          400:
  *              body: {error: <error message>}
  *          500:
