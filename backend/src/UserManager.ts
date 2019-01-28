@@ -34,11 +34,11 @@ export default class userManager {
         throw new Error("Duplicate username");
     }
 
-    // public delete_user(userID:string): boolean {
-    //     if (this.user_list.has(userID)){
-    //         this.user_list.delete(userID);
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    public delete_user(userID:string): boolean {
+        if (this.user_list.has(userID)) {
+            this.user_list.delete(userID)
+            return true;
+        }
+        return false;
+    }
 }
