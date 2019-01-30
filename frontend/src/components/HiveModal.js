@@ -1,10 +1,8 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
 import AddHiveButton from "./AddHiveButton";
-import Button from '@material-ui/core/Button';
 import HiveInputPrompt from "./HiveInputPrompt";
-import Typography from "@material-ui/core/Typography/Typography";
 
 function getModalStyle() {
     const top = 50;
@@ -19,18 +17,17 @@ function getModalStyle() {
 
 const styles = theme => ({
     paper: {
-        position: 'absolute',
-        left: window.innerWidth*0.3,
-        width: theme.spacing.unit * 50,
+        position: "absolute",
+        width: window.innerWidth > 600 ? theme.spacing.unit * 50 : window.innerWidth * 0.7,
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit * 4,
-        outline: 'none',
+        outline: "none",
     },
     modal: {
-        top:'50%',
-        left: '50%',
-        transform:'translate(-50%, -50%)',
+        top:"50%",
+        left: "50%",
+        transform:"translate(-50%, -50%)",
     },
 });
 
@@ -52,21 +49,18 @@ class SimpleModal extends React.Component {
         this.setState({ open: false });
     };
 
-
     render() {
-        const { classes } = this.props;
-
         return (
             <div>
-                <AddHiveButton triggerModal={this.handleOpen}/>
+                <AddHiveButton triggerModal={this.handleOpen} />
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                     open={this.state.open}
                     onClose={this.handleClose}
                 >
-                    <div style={getModalStyle()} className={classes.paper}>
-                        <HiveInputPrompt loadHiveList={this.props.loadHiveList} getData={this.props.getData} handleClose={this.handleClose}/>
+                    <div style={getModalStyle()} className={this.props.classes.paper}>
+                        <HiveInputPrompt user={this.props.user} handleClose={this.handleClose}/>
                     </div>
                 </Modal>
             </div>

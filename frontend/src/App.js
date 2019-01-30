@@ -4,8 +4,15 @@ import createStyles from "@material-ui/core/styles/createStyles";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import withStyles from "@material-ui/core/styles/withStyles";
 import SideBar from "./components/SideBar";
-import GoogleMap from "./components/GoogleMap";
+import SimpleMap from "./components/SimpleMap";
 import HiveModal from "./components/HiveModal"
+import ApolloClient from "apollo-boost";
+import {ApolloProvider, Query} from "react-apollo";
+import gql from "graphql-tag";
+
+const client = new ApolloClient({
+    uri: "http://localhost:8000/graphql"
+});
 
 const muiTheme = createMuiTheme({
     palette: {
@@ -36,84 +43,49 @@ const styles = (theme) => createStyles({
     }
 });
 
+const GET_USER = gql`
+    {
+        user(id: "dave") {
+            points
+            rank
+            badges
+          }
+    }
+`;
+
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            userName: "Andy",
-            points: 0,
-            badges: [],
-            rank: "",
-            currentLocation: {
-                lat: 49.28,
-                lon: -123.26,
-                radius: 0
-            },
-            hiveList: [],
+            username: "dave",
+            lat: 49.28,
+            lon: -123.26
         }
     }
 
-    componentDidMount() {
-        this.getProfile(this.state.userName);
-    }
-
-    getProfile = (username) => {
-        let request = new XMLHttpRequest();
-        let url = "http://localhost:8080/user/" + username;
-
-        request.open("GET", url, true);
-
-        request.onload = () => {
-            let response = JSON.parse(request.responseText);
-            if (request.status === 200) {
-                this.setState({
-                    username: response.userID,
-                    points: response.points,
-                    badges: response.badges,
-                    rank: response.rank,
-                })
-            } else {
-                console.error(response.error);
-            }
-        };
-
-        request.onerror = function() {
-            let response = JSON.parse(request.responseText);
-            console.error(response.error);
-        };
-
-        request.setRequestHeader("Content-Type", "application/json");
-        request.send();
-    };
-
-    loadHiveList = (hiveList) => {
-        this.setState({hiveList: hiveList});
-    };
-
-    getData = () => {
-        return {
-            username: this.state.username,
-            location: this.state.currentLocation
-        };
-    };
-
-    getHiveList = () => {
-        return this.state.hiveList;
-    };
-
     render() {
-        console.log(this.state.hiveList);
         return (
-            <div className="App">
+            <ApolloProvider client={client}>
                 <MuiThemeProvider theme={muiTheme}>
-                    <SideBar username={this.state.userName} points={this.state.points} badges={this.state.badges} rank={this.state.rank} />
+                    <Query query={GET_USER} variables={{ id: this.state.username }}>
+                        {({ loading, error, data }) => {
+                            if (loading) console.log("loading user data");
+                            if (error) console.error(error.message);
+
+                            if (data !== undefined && data.user !== undefined) {
+                                const {points, badges, rank} = data.user;
+                                return <SideBar username={this.state.username} points={points} badges={badges} rank={rank}/>
+                            }
+                            return <div> </div>;
+                        }}
+                    </Query>
                     <div className={window.innerWidth > 600 ? this.props.classes.mainBar : this.props.classes.mainBarMobile}>
-                        <HiveModal loadHiveList={this.loadHiveList} getData={this.getData} />
-                        <GoogleMap hiveList={this.getHiveList}/>
+                        <HiveModal user={{name: this.state.username, lat: this.state.lat, lon: this.state.lon}} />
+                        <SimpleMap />
                     </div>
                 </MuiThemeProvider>
-            </div>
+            </ApolloProvider>
         );
     }
 }

@@ -95,7 +95,7 @@ class SideBar extends Component {
         const navBar = (
             <AppBar position="static" className={this.props.classes.header} color="primary">
                 <Toolbar>
-                    <Avatar alt={"Logo"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/logo.png"} className={this.props.classes.logo}>B</Avatar>
+                    <Avatar alt={"Logo"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/master/frontend/images/logo.png"} className={this.props.classes.logo}>B</Avatar>
                     <Typography variant="h6">
                         The Big Buzz
                     </Typography>
@@ -117,7 +117,7 @@ class SideBar extends Component {
                     >
                         {this.props.badges.map((value, index) => (
                             <Grid key={index} item>
-                                <img className={this.props.classes.badgeIcons} src={value}/>
+                                <img className={this.props.classes.badgeIcons} src={value} alt={"badge"}/>
                             </Grid>
                         ))}
                     </Grid>
@@ -132,21 +132,21 @@ class SideBar extends Component {
                 </div>
                 <List className={window.innerWidth > 600 ? this.props.classes.info : this.props.classes.infoMobile}>
                     <ListItem>
-                        <Avatar alt={"User"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/user.png"} />
+                        <Avatar alt={"User"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/master/frontend/images/user.png"} />
                         <ListItemText primary={this.props.username} />
                     </ListItem>
                     <li>
                         <Divider />
                     </li>
                     <ListItem>
-                        <Avatar alt={"Points"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/points.png"} />
+                        <Avatar alt={"Points"} src={"https://raw.githubusercontent.com/andykdy/nwHacks2019/master/frontend/images/points.png"} />
                         <ListItemText primary={this.props.points} />
                     </ListItem>
                     <li>
                         <Divider />
                     </li>
                     <ListItem>
-                        <Avatar alt={"Rank"} src="https://raw.githubusercontent.com/andykdy/nwHacks2019/frontend/frontend/images/rank.png" />
+                        <Avatar alt={"Rank"} src="https://raw.githubusercontent.com/andykdy/nwHacks2019/master/frontend/images/rank.png" />
                         <ListItemText primary={this.props.rank} />
                     </ListItem>
                 </List>

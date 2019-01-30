@@ -1,9 +1,10 @@
 import TextField from '@material-ui/core/TextField';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography/Typography";
 import Button from "@material-ui/core/Button/Button";
+import gql from "graphql-tag";
+import { Mutation } from "react-apollo";
 
 const styles = theme => ({
     container: {
@@ -27,6 +28,23 @@ const styles = theme => ({
     },
 });
 
+const CREATE_HIVE = gql`
+    mutation CreateHive($title: String!, $lat: Float!, $lon: Float!, $description: String!, $username: ID!) {
+        createHive(
+            title: $title, 
+            location: {
+                lat: $lat, 
+                lon: $lon
+            }, 
+            description: $description,
+            user: $username
+        ) {
+            key
+            title
+        }
+    }
+`;
+
 class HiveInputPrompt extends Component {
 
     constructor(props){
@@ -43,81 +61,56 @@ class HiveInputPrompt extends Component {
         });
     };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        let data = this.props.getData();
-        console.log(this.state.title);
-        console.log(this.state.description);
-        this.addHive(this.state.title, this.state.description, data.username, data.location);
-    };
-
-    addHive = (title, description, username, location) => {
-        let request = new XMLHttpRequest();
-        let url = "http://localhost:8080/hive";
-
-        request.open("POST", url, true);
-
-        request.onload = () => {
-            let response = JSON.parse(request.responseText);
-            if (request.status === 200 || request.status === 201) {
-                this.props.loadHiveList(response);
-            } else {
-                console.error(response);
-            }
-        };
-
-        request.onerror = function() {
-            console.error(request.responseText);
-        };
-
-        request.setRequestHeader("Content-Type", "application/json");
-
-        const data = {
-            title: title,
-            description: description,
-            username: username,
-            location: location
-        };
-
-        console.log(data);
-
-        request.send(JSON.stringify(data));
-    };
-
     render() {
         const { classes } = this.props;
         return (
             <div>
-                <Typography className={this.props.classes.label} variant={"h4"}>
-                    Create Hive
-                </Typography>
-                <form className={classes.container} onSubmit={this.handleSubmit}>
-                    <TextField
-                        id="outlined-title-input"
-                        label="Hive Title"
-                        className={classes.textField}
-                        type="text"
-                        margin="normal"
-                        variant="outlined"
-                        onChange={this.handleChange("title")}
-                    />
-                    <TextField
-                        id="outlined-description-input"
-                        label="Hive Description"
-                        onChange={this.handleChange("description")}
-                        className={classes.textField}
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <Button onClick={this.props.handleClose}> Close </Button>
-                    <Button onClick={this.handleSubmit} color={"primary"} variant={"contained"} className={this.props.classes.submit}> Submit </Button>
-                </form>
+                <Mutation mutation={CREATE_HIVE}>
+                    {(createHive) => {
+                        const ssss = (e) => {
+                            e.preventDefault();
+                            createHive({ variables: {
+                                    username: this.props.user.name,
+                                    title: this.state.title,
+                                    description: this.state.description,
+                                    lat: this.props.user.lat,
+                                    lon: this.props.user.lon
+                                }});
+
+                            this.props.handleClose();
+                        };
+
+                        return (
+                            <form className={classes.container} onSubmit={ssss}>
+                                <Typography className={this.props.classes.label} variant={"h5"}>
+                                    Create Hive
+                                </Typography>
+                                <TextField
+                                    id="outlined-title-input"
+                                    label="Hive Title"
+                                    className={classes.textField}
+                                    type="text"
+                                    margin="normal"
+                                    variant="outlined"
+                                    onChange={this.handleChange("title")}
+                                />
+                                <TextField
+                                    id="outlined-description-input"
+                                    label="Hive Description"
+                                    onChange={this.handleChange("description")}
+                                    className={classes.textField}
+                                    margin="normal"
+                                    variant="outlined"
+                                />
+                                <Button onClick={this.props.handleClose}>Close</Button>
+                                <Button onClick={ssss} color={"primary"} variant={"contained"} className={this.props.classes.submit}>Submit</Button>
+                            </form>
+                        );
+                    }}
+                </Mutation>
             </div>
         )
     }
 }
-HiveInputPrompt.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(HiveInputPrompt);
